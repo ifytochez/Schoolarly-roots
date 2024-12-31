@@ -1,0 +1,26 @@
+.logo {
+  font-family: "Recoleta Alt";
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 65.28px;
+  text-align: left;
+  text-decoration: none;
+  color: rgba(22, 0, 65, 1);
+}
+
+.text {
+  color: rgba(22, 0, 65, 1);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 26.04px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  justify-content: center;
+}
+
+.line {
+  border: 1px solid rgba(22, 0, 65, 0.4);
+  width: 80%;
+  margin: auto;
+  margin-top: 5rem;
+}

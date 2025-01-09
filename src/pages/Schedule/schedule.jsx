@@ -4,11 +4,11 @@ import { FaCalendarAlt } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
 
 const SchedulePage = () => {
-  const [selectedDate, setSelectedDate] = useState(null); // Initially, no date is selected
+  const [selectedDate, setSelectedDate] = useState(null);
   const [showYearDropdown, setShowYearDropdown] = useState(false);
   const [showMonthDropdown, setShowMonthDropdown] = useState(false);
   const [schedules, setSchedules] = useState({
-    "2024-12-26": [
+    "2025-01-26": [
       {
         id: 1,
         time: "10:00 AM",
@@ -30,7 +30,7 @@ const SchedulePage = () => {
       },
       { id: 5, time: "5:30 PM", description: "Student Call", color: "#f8961e" },
     ],
-    "2024-12-27": [
+    "2025-01-27": [
       {
         id: 6,
         time: "9:00 AM",
@@ -142,15 +142,12 @@ const SchedulePage = () => {
   return (
     <div>
       <div className="flex justify-between items-center pt-6 pb-3 pl-8 pr-8">
-        <p className="airbnb text-lg">Schedule</p>
+        <p className="text-2xl font-semibold text-[#160041] font-recoleta">
+          Schedule
+        </p>
         <img src={Bell} alt="Notification Bell" />
       </div>
-      <div
-        className="w-4 h-1.5 pr-8 pl-8 bg-[#9868fd] ml-8"
-        style={{
-          clipPath: "polygon(0 100%, 10% 0, 90% 0, 100% 100%)",
-        }}
-      ></div>
+
       <hr />
 
       <div className="flex h-[85vh] p-8">
@@ -225,7 +222,7 @@ const SchedulePage = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-6 border border-gray-100">
+          <div className="grid grid-cols-6 border border-gray-100 text-gray">
             {completeGrid.map((day, index) => (
               <div
                 key={index}
@@ -233,10 +230,16 @@ const SchedulePage = () => {
                   completeGrid.length > 30 ? "min-h-[95px]" : "min-h-[115px]"
                 }`}
                 onClick={day ? () => handleDateChange(day) : undefined}
+                style={{
+                  color: day ? "#808080" : "#d3d3d3",
+                }}
               >
                 {day && (
                   <>
-                    <div className="text-sm font-semibold">{day.getDate()}</div>
+                    <div className="text-sm font-semibold">
+                      {String(day.getDate()).padStart(2, "0")}
+                    </div>
+
                     {schedules[formattedDate(day)]
                       ?.slice(0, 2)
                       .map((schedule) => (
@@ -267,7 +270,7 @@ const SchedulePage = () => {
           </div>
         </div>
 
-        <div className="w-1/3 bg-purple-50 rounded-lg p-4 ml-4 h-[675px]">
+        <div className="w-1/3 bg-[#ede6f8] rounded-lg p-4 ml-4 h-[675px]">
           <h3 className="text-lg font-bold mb-4">
             {selectedDate ? selectedDate.toDateString() : ""}
           </h3>

@@ -3,7 +3,7 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <header className="">
+    <footer className="footer">
       <hr className="line" />
       <div className="w-[80%] mx-auto flex justify-between items-center py-4">
         <div className="logo text-2xl font-bold">SR.</div>
@@ -16,7 +16,7 @@ const Footer = () => {
           <a href="#tutors">Contact Us</a>
         </nav>
       </div>
-    </header>
+    </footer>
   );
 };
 

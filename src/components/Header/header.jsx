@@ -1,9 +1,16 @@
 import React from "react";
 import "./header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/selectUserLogin");
+  };
+
   return (
-    <header className="">
+    <header>
       <div className="w-[80%] mx-auto flex justify-start items-center py-4">
         <div className="logo text-2xl font-bold">SR.</div>
 
@@ -16,13 +23,16 @@ const Header = () => {
         </nav>
 
         <div>
-          <button className="button px-14 py-3 text-white rounded ml-20">
+          <button
+            className="button px-12 py-2 text-white rounded ml-24"
+            onClick={handleLogin}
+          >
             Login
           </button>
         </div>
       </div>
 
-      <hr className="line" />
+      <hr className="border-[1px] border-[rgba(22,0,65,0.4)] w-[80%] mx-auto" />
     </header>
   );
 };

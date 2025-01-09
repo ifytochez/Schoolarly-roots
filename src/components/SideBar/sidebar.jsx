@@ -50,7 +50,6 @@ const Sidebar = () => {
     setShowSwitchUser(true);
   };
 
-  // Close modal when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -73,22 +72,18 @@ const Sidebar = () => {
   }, [showSwitchUser, showProceedSwitchUser]);
 
   useEffect(() => {
-    if (showSwitchUser || showProceedSwitchUser) {
-      document.body.style.backgroundColor = "#7f7f7f";
-    } else {
-      document.body.style.backgroundColor = "#fff";
-    }
-    return () => {
-      document.body.style.backgroundColor = "#fff";
+    const pathToIdMapping = {
+      "/dashboard": "dashboard",
+      "/classes": "classes",
+      "/homework": "homework",
+      "/schedule": "schedule",
+      "/reports": "reports",
+      "/settings": "settings",
     };
-  }, [showSwitchUser, showProceedSwitchUser]);
 
-  useEffect(() => {
-    const storedActiveLink = localStorage.getItem("activeLink");
-    if (storedActiveLink) {
-      setActiveLink(storedActiveLink);
-    }
-  }, []);
+    const activeId = pathToIdMapping[location.pathname] || "";
+    setActiveLink(activeId);
+  }, [location.pathname]);
 
   const links = [
     {
@@ -137,9 +132,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left Section */}
-      <div className="px-4 flex flex-col justify-between">
-        {/* Top content */}
+      <div className="ml-4 mr-4 flex flex-col justify-between">
         <div className="flex flex-col items-center mt-5 mb-10">
           <p
             className="text-4xl font-bold font-recoleta"
@@ -149,14 +142,13 @@ const Sidebar = () => {
           </p>
         </div>
 
-        {/* Links */}
         <div className="text-1xl font-recoleta mt-28">
           {links.map((link) => (
             <Link
               key={link.id}
               to={link.to}
               onClick={() => handleSetActiveLink(link.id)}
-              className={`flex items-center space-x-1 mb-1 cursor-pointer py-3 pl-4 pr-10 ${
+              className={`flex items-center space-x-1 mb-1 cursor-pointer py-3 pl-7 pr-10 ${
                 activeLink === link.id
                   ? "bg-active-purple text-custom-purple rounded-lg"
                   : "links"
@@ -171,7 +163,6 @@ const Sidebar = () => {
           ))}
         </div>
 
-        {/* Button container */}
         <div className="flex flex-col items-center space-y-2 mt-auto mb-1">
           <button className="mb-1 rounded-full border px-10 py-10 bg-[rgba(217,217,217,1)]"></button>
           <button

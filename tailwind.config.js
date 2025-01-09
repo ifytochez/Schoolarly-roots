@@ -18,6 +18,15 @@ module.exports = {
         "active-purple": "rgb(223, 212, 244)",
         "custom-border": "rgba(240, 240, 240, 1)",
       },
+      fontSize: {
+        "4.5xl": "2.65rem",
+      },
+      boxShadow: {
+        custom: "0px 20px 40px 0px #00000040",
+      },
+      borderRadius: {
+        "5xl": "2.5rem",
+      },
     },
   },
   plugins: [],

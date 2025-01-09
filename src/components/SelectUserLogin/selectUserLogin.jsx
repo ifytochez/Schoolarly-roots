@@ -1,16 +1,24 @@
 import React from "react";
-import "./selectUserLogin.css";
+// import "./selectUserLogin.css";
+import { useNavigate } from "react-router-dom";
 
-const SelectUserLogin = () => {
+const SelectUserLogin = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
+
+  const handleProceed = () => {
+    setIsLoggedIn(true);
+    navigate("/dashboard");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center pt-3">
+    <div className="min-h-screen flex flex-col items-center pt-3 bg-[#f5f2fd]">
       <div className="mb-28 logo text-3xl font-bold font-recoleta">SR.</div>
 
       <div className="text-center mb-8">
         <p className="text-logo-purple font-recoleta text-4xl font-bold">
           Select a User
         </p>
-        <p className="text-2xl font-normal text-custom-black mb-10 mt-1">
+        <p className="text-2xl font-normal text-custom-black mb-10 mt-1 font-airbnb">
           Select a user to login.
         </p>
       </div>
@@ -46,7 +54,10 @@ const SelectUserLogin = () => {
       </div>
 
       <div>
-        <button className="bg-custom-purple text-white py-3 px-16 rounded mt-16 font-recoleta text-xl">
+        <button
+          className="bg-custom-purple text-white py-3 px-16 rounded mt-16 font-recoleta text-xl"
+          onClick={handleProceed}
+        >
           Proceed
         </button>
       </div>

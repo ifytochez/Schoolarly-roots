@@ -42,8 +42,8 @@ p {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(88, 86, 86, 0.5); /* Semi-transparent black */
-  z-index: 9998; /* Slightly less than the modal */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 .hidden {
   display: none;

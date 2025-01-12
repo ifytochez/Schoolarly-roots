@@ -30,58 +30,69 @@ const Table = ({ columns, data }) => {
 
   return (
     <div>
-      <div
-        className="font-airbnb text-lg bg-[#f3f3f3]"
+      <table
+        {...getTableProps()}
+        className="min-w-full table-auto"
         style={{
-          borderRadius: "0.5rem",
-          overflow: "hidden",
+          borderCollapse: "separate",
+          borderSpacing: "0",
         }}
       >
-        <table
-          {...getTableProps()}
-          className="min-w-full table-auto"
+        <thead
+          className="font-airbnb text-lg"
           style={{
-            borderCollapse: "separate",
-            borderSpacing: "0",
+            backgroundColor: "#f3f3f3",
           }}
         >
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th
-                    {...column.getHeaderProps({
-                      className: `px-4 py-2 text-left border-b ${
-                        column.customClassName || ""
-                      }`,
-                      style: column.customStyle || {},
-                    })}
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, index) => (
+                <th
+                  {...column.getHeaderProps({
+                    className: `px-4 py-2 text-left  ${
+                      column.customClassName || ""
+                    }`,
+                    style: {
+                      ...column.customStyle,
+                      color: "rgba(89, 89, 89, 1)",
+                      borderTopLeftRadius: index === 0 ? "0.5rem" : "0",
+                      borderBottomLeftRadius: index === 0 ? "0.5rem" : "0",
+                      borderTopRightRadius:
+                        index === headerGroup.headers.length - 1
+                          ? "0.5rem"
+                          : "0",
+                      borderBottomRightRadius:
+                        index === headerGroup.headers.length - 1
+                          ? "0.5rem"
+                          : "0",
+                    },
+                  })}
+                >
+                  {column.render("Header")}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+
+        <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td
+                    {...cell.getCellProps()}
+                    className="px-4 py-3 border-b text-[rgba(89,89,89,1)]"
                   >
-                    {column.render("Header")}
-                  </th>
+                    {cell.render("Cell")}
+                  </td>
                 ))}
               </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td
-                      {...cell.getCellProps()}
-                      className="px-4 py-3 border-b text-[rgba(89,89,89,1)]"
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+            );
+          })}
+        </tbody>
+      </table>
 
       {/* Pagination */}
       <div className="flex justify-end items-center mt-4 gap-8 text-[rgba(89,89,89,1)]">

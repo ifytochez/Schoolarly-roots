@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Bell from "../../assets/images/bell 1.png";
 import Reading from "../../assets/images/reading.png";
+import Playing from "../../assets/images/Playing.png";
 import Table from "../../components/Table/table";
 
 const HomeworkPage = () => {
@@ -12,8 +13,18 @@ const HomeworkPage = () => {
   };
 
   const pendingHomeworkData = [
-    { course: "Math", dueDate: "2024-12-30T16:00:00Z", isOverdue: false },
-    { course: "Science", dueDate: "2024-12-28T16:00:00Z", isOverdue: true },
+    {
+      course: "Math",
+      dueDate: "2024-12-30T16:00:00Z",
+      isOverdue: false,
+      image: Reading,
+    },
+    {
+      course: "Science",
+      dueDate: "2024-12-28T16:00:00Z",
+      isOverdue: true,
+      image: Playing,
+    },
   ];
 
   const columnsMapping = {
@@ -43,10 +54,7 @@ const HomeworkPage = () => {
 
   const columns = columnsMapping[active];
 
-  const getRandomColor = () => {
-    const colors = ["#E0E2FF", "#BAEDED"];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
+  const colors = ["#BAEDED", "#E0E2FF"];
 
   const formatDueDate = (dueDate, isOverdue) => {
     const today = new Date();
@@ -132,7 +140,7 @@ const HomeworkPage = () => {
                     <div
                       className="mb-2"
                       style={{
-                        backgroundColor: getRandomColor(),
+                        backgroundColor: colors[index % colors.length],
                         width: "240px",
                         height: "120px",
                         borderTopLeftRadius: "10px",
@@ -143,8 +151,8 @@ const HomeworkPage = () => {
                       }}
                     >
                       <img
-                        src={Reading}
-                        alt={homework.course}
+                        src={homework.image}
+                        alt={homework.image}
                         style={{
                           width: "100px",
                           height: "100px",
@@ -152,7 +160,7 @@ const HomeworkPage = () => {
                       />
                     </div>
 
-                    <p className="font-semibold text-sm font-recoleta">
+                    <p className="font-lg text-sm font-recoleta">
                       {homework.course}
                     </p>
                     <p

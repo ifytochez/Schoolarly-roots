@@ -79,6 +79,7 @@ const Sidebar = () => {
       "/schedule": "schedule",
       "/reports": "reports",
       "/settings": "settings",
+      "/courseDetails": "classes",
     };
 
     const activeId = pathToIdMapping[location.pathname] || "";

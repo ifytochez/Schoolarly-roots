@@ -14,6 +14,7 @@ import ReportsPage from "./pages/Report/report";
 import SettingsPage from "./pages/Settings/settings";
 import LandingPage from "./components/LandingPage/landingPage";
 import SelectUserLogin from "./components/SelectUserLogin/selectUserLogin";
+import CourseDetails from "./pages/CourseDetails/courseDetails";
 
 const App = () => {
   const storedLoginStatus = localStorage.getItem("isLoggedIn");
@@ -56,6 +57,7 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn }) => {
               <Route path="/schedule" element={<SchedulePage />} />
               <Route path="/reports" element={<ReportsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/courseDetails" element={<CourseDetails />} />
             </>
           )}
         </Routes>

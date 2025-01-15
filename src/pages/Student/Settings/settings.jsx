@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import "../../index.css";
+import "../../../index.css";
 import "./settings.css";
 
-import Bell from "../../assets/images/bell 1.png";
+import Bell from "../../../assets/images/bell 1.png";
 
 const SettingsPage = () => {
   const fileInputRef = useRef(null);

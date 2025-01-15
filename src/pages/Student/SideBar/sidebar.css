@@ -1,0 +1,50 @@
+/* * {
+  background: rgba(255, 255, 255, 1);
+} */
+
+.links {
+  color: rgba(89, 89, 89, 1);
+}
+img,
+p {
+  background: none;
+}
+
+.switchUser {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 2rem;
+}
+
+.proceedSwitchUser {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 3rem;
+  width: 33rem;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.hidden {
+  display: none;
+}

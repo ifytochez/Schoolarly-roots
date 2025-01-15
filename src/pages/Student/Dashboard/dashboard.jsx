@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Contact from "../../assets/images/contactus.png";
-import Bell from "../../assets/images/bell 1.png";
-import ChartComponent from "../../components/Chart/chart";
-import ArrowUpRightIcon from "../../assets/icons/arrowup";
+import Contact from "../../../assets/images/contactus.png";
+import Bell from "../../../assets/images/bell 1.png";
+import ChartComponent from "../../../components/Chart/chart";
+import ArrowUpRightIcon from "../../../assets/icons/arrowup";
 
 const DashboardPage = () => {
   const [reportType, setReportType] = useState("study-hours");

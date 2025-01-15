@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Bell from "../../assets/images/bell 1.png";
-import Table from "../../components/Table/table";
+import Bell from "../../../assets/images/bell 1.png";
+import Table from "../../../components/Table/table";
 
 const ReportPage = () => {
   const [active, setActive] = useState("Class Reports");

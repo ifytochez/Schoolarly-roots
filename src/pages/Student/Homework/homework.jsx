@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Bell from "../../assets/images/bell 1.png";
-import Reading from "../../assets/images/reading.png";
-import Playing from "../../assets/images/Playing.png";
-import Table from "../../components/Table/table";
+import Bell from "../../../assets/images/bell 1.png";
+import Reading from "../../../assets/images/reading.png";
+import Playing from "../../../assets/images/Playing.png";
+import Table from "../../../components/Table/table";
 
 const HomeworkPage = () => {
   const [active, setActive] = useState("Pending Homework");

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import Bell from "../../assets/images/bell 1.png";
-import Reading from "../../assets/images/reading.png";
-import Writing from "../../assets/images/Writing.png";
-import Playing from "../../assets/images/Playing.png";
-import Table from "../../components/Table/table";
+import Bell from "../../../assets/images/bell 1.png";
+import Reading from "../../../assets/images/reading.png";
+import Writing from "../../../assets/images/Writing.png";
+import Playing from "../../../assets/images/Playing.png";
+import Table from "../../../components/Table/table";
 
 const ClassesPage = () => {
   const [active, setActive] = useState("Active Classes");

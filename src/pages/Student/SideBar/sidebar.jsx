@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./sidebar.css";
-import DashboardActive from "../../assets/images/bxs-dashboard.png";
-import Classes from "../../assets/images/bx-classes.png";
-import Homework from "../../assets/images/bx-homework.png";
-import Schedule from "../../assets/images/bx-schedule.png";
-import Reports from "../../assets/images/bx-reports.png";
-import Settings from "../../assets/images/bx-settings.png";
-import Users from "../../assets/images/users.png";
-import Dashboard from "../../assets/images/bx-dashboard.png";
-import ClassesActive from "../../assets/images/bxs-classes.png";
-import HomeworkActive from "../../assets/images/bxs-homework.png";
-import ScheduleActive from "../../assets/images/bxs-schedule.png";
-import ReportsActive from "../../assets/images/bxs-reports.png";
-import SettingsActive from "../../assets/images/bxs-settings.png";
-import PasswordInput from "../PasswordInput/passwordInput";
+import DashboardActive from "../../../assets/images/bxs-dashboard.png";
+import Classes from "../../../assets/images/bx-classes.png";
+import Homework from "../../../assets/images/bx-homework.png";
+import Schedule from "../../../assets/images/bx-schedule.png";
+import Reports from "../../../assets/images/bx-reports.png";
+import Settings from "../../../assets/images/bx-settings.png";
+import Users from "../../../assets/images/users.png";
+import Dashboard from "../../../assets/images/bx-dashboard.png";
+import ClassesActive from "../../../assets/images/bxs-classes.png";
+import HomeworkActive from "../../../assets/images/bxs-homework.png";
+import ScheduleActive from "../../../assets/images/bxs-schedule.png";
+import ReportsActive from "../../../assets/images/bxs-reports.png";
+import SettingsActive from "../../../assets/images/bxs-settings.png";
+import PasswordInput from "../../../components/PasswordInput/passwordInput";
 
 const Sidebar = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -22,6 +22,7 @@ const Sidebar = () => {
   const [showSwitchUser, setShowSwitchUser] = useState(false);
   const [showProceedSwitchUser, setShowProceedSwitchUser] = useState(false);
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const switchUserRef = useRef(null);
   const proceedSwitchUserRef = useRef(null);
@@ -48,6 +49,10 @@ const Sidebar = () => {
   const handleGoBackClick = () => {
     setShowProceedSwitchUser(false);
     setShowSwitchUser(true);
+  };
+
+  const handleSignOut = () => {
+    navigate("/");
   };
 
   useEffect(() => {
@@ -172,7 +177,10 @@ const Sidebar = () => {
           >
             Switch User
           </button>
-          <button className="font-recoleta text-custom-purple focus:border-[1px] focus:border-custom-purple focus:outline-none px-8 py-2 focus:rounded-lg">
+          <button
+            className="font-recoleta text-custom-purple focus:border-[1px] focus:border-custom-purple focus:outline-none px-8 py-2 focus:rounded-lg"
+            onClick={handleSignOut}
+          >
             Sign Out
           </button>
         </div>

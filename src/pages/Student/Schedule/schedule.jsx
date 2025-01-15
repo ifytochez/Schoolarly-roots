@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Bell from "../../assets/images/bell 1.png";
+import Bell from "../../../assets/images/bell 1.png";
 import { FaCalendarAlt } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
 

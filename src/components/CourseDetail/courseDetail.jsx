@@ -16,7 +16,7 @@ const CourseDetail = () => {
       {/* Sidebar */}
       <div className="w-1/5 p-4 bg-[#ede6f8] overflow-y-auto pl-8">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/courseGrid")}
           className="text-purple-700 font-bold"
         >
           &larr; Back
@@ -24,7 +24,7 @@ const CourseDetail = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 bg-[#F5F5F5] shadow-lg p-6">
+      <div className="flex-1 bg-[#F5F5F5]  p-6">
         {/* Course Header */}
         <div className="flex flex-col">
           <img
@@ -99,29 +99,41 @@ const CourseDetail = () => {
       </div>
 
       {/* Enrollment Section */}
-      <div className="w-1/4 p-6 bg-white shadow-lg rounded-lg ml-6">
-        <h3 className="text-lg font-bold">Enroll Alexis Shouberto</h3>
+      <div className="w-1/4 p-6 ml-6  bg-[#F5F5F5]">
+        <h3 className="text-lg font-recoleta text-custom-purple ">
+          Enroll Alexis Shouberto
+        </h3>
 
-        <div className="mt-4">
-          <h4 className="text-md font-bold">General Class</h4>
-          <p className="text-gray-600 text-sm">
-            Your child, alongside 19 other students.
+        <div className="mt-4 bg-white p-4 rounded-lg">
+          <h4 className="text-md font-recoleta text-custom-purple underline">
+            General Class
+          </h4>
+          <p className="text-gray-600 text-sm font-airbnb mt-3">
+            Your child, alongside no more than 19 other students in a class with
+            the tutor.
           </p>
+
           <button
-            className="mt-2 w-full"
+            className="text-white py-2 px-12 bg-custom-purple rounded font-recoleta text-sm mt-8"
             onClick={() => setSelectedClass("General")}
           >
             Enroll - $120
           </button>
         </div>
 
-        <div className="mt-4">
-          <h4 className="text-md font-bold">Private Class</h4>
-          <p className="text-gray-600 text-sm">
-            One-on-one experience with the tutor.
+        <div className="mt-4 bg-white p-4 rounded-lg">
+          <h4 className="text-md font-recoleta text-custom-purple underline">
+            Private Class
+          </h4>
+          <p className="text-gray-600 text-sm font-airbnb mt-3">
+            A personal one-on-one experience with only your child and the tutor.
+          </p>
+
+          <p className="text-gray-600 text-sm font-airbnb mt-3">
+            You also select the date you want the class to start.
           </p>
           <button
-            className="mt-2 w-full"
+            className="text-custom-purple py-2 px-8 border border-custom-purple rounded font-recoleta text-sm mt-8"
             onClick={() => setSelectedClass("Private")}
           >
             Enroll - $180

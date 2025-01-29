@@ -186,6 +186,12 @@ const Account = () => {
               <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => navigate("/student")}
+                >
+                  View Details
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => handleViewFeedback(row.original)}
                 >
                   View Pending Feedback
@@ -358,7 +364,7 @@ const Account = () => {
               <img src={Flag} alt="flag" />
             </button>
             <p className="mt-2 font-recoleta text-xl text-[rgba(22, 0, 65, 1)] font-bold">
-              Edit Homework Feedback
+              Edit Session Feedback
             </p>
 
             <div className="mt-8">

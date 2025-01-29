@@ -68,6 +68,7 @@ const AdminSidebar = () => {
       "/adminSettings": "settings",
       "/singleCourse": "courses",
       "/parent": "accounts",
+      "/student": "accounts",
     };
 
     const activeId = pathToIdMapping[location.pathname] || "";

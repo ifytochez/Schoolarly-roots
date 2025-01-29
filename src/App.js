@@ -25,6 +25,8 @@ import AdminSettings from "./pages/Admin/Settings/adminSettings";
 import Finances from "./pages/Admin/Finances/finances";
 import SingleCourse from "./pages/Admin/SingleCourse/singleCourse";
 import Parent from "./pages/Admin/Parent/parent";
+import Student from "./pages/Admin/Student/student";
+import CourseDetail from "./components/CourseDetail/courseDetail";
 
 const App = () => {
   const storedLoginStatus = localStorage.getItem("isLoggedIn");
@@ -80,6 +82,7 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
               <Route path="/finances" element={<Finances />} />
               <Route path="/singleCourse" element={<SingleCourse />} />
               <Route path="/parent" element={<Parent />} />
+              <Route path="/student" element={<Student />} />
             </>
           )}
 

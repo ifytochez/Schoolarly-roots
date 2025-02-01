@@ -78,8 +78,12 @@ const CourseGrid = () => {
     setSelectedCourse(course);
   };
 
+  const handleBack = () => {
+    setSelectedCourse(null);
+  };
+
   if (selectedCourse) {
-    return <CourseDetail course={selectedCourse} />;
+    return <CourseDetail course={selectedCourse} onBack={handleBack} />;
   }
 
   const handleFilterChange = (type, value) => {

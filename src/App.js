@@ -5,33 +5,55 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import Sidebar from "./components/SideBar/sidebar";
-import DashboardPage from "./pages/Dashboard/dashboard";
-import ClassesPage from "./pages/Classes/classes";
-import HomeworkPage from "./pages/Homework/homework";
-import SchedulePage from "./pages/Schedule/schedule";
-import ReportsPage from "./pages/Report/report";
-import SettingsPage from "./pages/Settings/settings";
+import Sidebar from "./pages/Student/SideBar/sidebar";
+import AdminSidebar from "./pages/Admin/Sidebar/AdminSidebar";
+import DashboardPage from "./pages/Student/Dashboard/dashboard";
+import AdminDashboard from "./pages/Admin/Dashboard/adminDashboard";
+import ClassesPage from "./pages/Student/Classes/classes";
+import HomeworkPage from "./pages/Student/Homework/homework";
+import SchedulePage from "./pages/Student/Schedule/schedule";
+import ReportsPage from "./pages/Student/Report/report";
+import SettingsPage from "./pages/Student/Settings/settings";
 import LandingPage from "./components/LandingPage/landingPage";
 import SelectUserLogin from "./components/SelectUserLogin/selectUserLogin";
-import CourseDetails from "./pages/CourseDetails/courseDetails";
+import CourseDetails from "./pages/Student/CourseDetails/courseDetails";
+import Account from "./pages/Admin/Account/Account";
+import AdminClasses from "./pages/Admin/Classes/adminClass";
+import CoursePage from "./pages/Admin/Courses/courses";
+import AdminReports from "./pages/Admin/Reports/adminReports";
+import AdminSettings from "./pages/Admin/Settings/adminSettings";
+import Finances from "./pages/Admin/Finances/finances";
+import SingleCourse from "./pages/Admin/SingleCourse/singleCourse";
+import Parent from "./pages/Admin/Parent/parent";
+import Student from "./pages/Admin/Student/student";
+import CourseDetail from "./components/CourseDetail/courseDetail";
 
 const App = () => {
   const storedLoginStatus = localStorage.getItem("isLoggedIn");
+  const storedUserType = localStorage.getItem("userType");
   const [isLoggedIn, setIsLoggedIn] = useState(storedLoginStatus === "true");
+  const [isAdmin, setIsAdmin] = useState(storedUserType === "admin");
 
   useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
-  }, [isLoggedIn]);
+    const storedLoginStatus = localStorage.getItem("isLoggedIn") === "true";
+    const storedUserType = localStorage.getItem("userType") === "admin";
+    setIsLoggedIn(storedLoginStatus);
+    setIsAdmin(storedUserType);
+  }, []);
 
   return (
     <Router>
-      <AppContent isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <AppContent
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+      />
     </Router>
   );
 };
 
-const AppContent = ({ isLoggedIn, setIsLoggedIn }) => {
+const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
   const location = useLocation();
   const isSidebarVisible =
     isLoggedIn &&
@@ -40,16 +62,31 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div className="flex min-h-screen">
-      {isSidebarVisible && <Sidebar />}
+      {isSidebarVisible && (isAdmin ? <AdminSidebar /> : <Sidebar />)}
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage setIsAdmin={setIsAdmin} />} />
           <Route
             path="/selectUserLogin"
             element={<SelectUserLogin setIsLoggedIn={setIsLoggedIn} />}
           />
 
-          {isLoggedIn && (
+          {isLoggedIn && isAdmin && (
+            <>
+              <Route path="/adminDashboard" element={<AdminDashboard />} />
+              <Route path="/Account" element={<Account />} />
+              <Route path="/adminClass" element={<AdminClasses />} />
+              <Route path="/courses" element={<CoursePage />} />
+              <Route path="/adminReports" element={<AdminReports />} />
+              <Route path="/adminSettings" element={<AdminSettings />} />
+              <Route path="/finances" element={<Finances />} />
+              <Route path="/singleCourse" element={<SingleCourse />} />
+              <Route path="/parent" element={<Parent />} />
+              <Route path="/student" element={<Student />} />
+            </>
+          )}
+
+          {isLoggedIn && !isAdmin && (
             <>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/classes" element={<ClassesPage />} />

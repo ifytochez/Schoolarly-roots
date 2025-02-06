@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-const PasswordInput = ({ value, onChange }) => {
+const PasswordInput = ({ value, onChange, className = "" }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -9,13 +9,12 @@ const PasswordInput = ({ value, onChange }) => {
   };
 
   return (
-    <div className="relative w-64">
+    <div className={`relative ${className}`}>
       <input
         type={showPassword ? "text" : "password"}
         value={value}
         onChange={onChange}
-        className="w-full py-2 px-3 rounded mt-3 font-recoleta text-l border-2 border-[rgba(89, 89, 89, 1)] focus:outline-none"
-        placeholder="Enter password"
+        className={`w-full py-2 px-3 rounded mt-3 font-recoleta text-l border-2 border-[rgba(89, 89, 89, 1)] focus:outline-none ${className}`}
       />
       <button
         onClick={togglePasswordVisibility}

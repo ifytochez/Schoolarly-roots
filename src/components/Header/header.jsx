@@ -2,11 +2,23 @@ import React from "react";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ setIsAdmin }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate("/selectUserLogin");
+    const userType = prompt("Enter user type (admin/student):").toLowerCase();
+
+    if (userType === "admin") {
+      localStorage.setItem("userType", "admin");
+      setIsAdmin(true);
+      navigate("/adminDashboard");
+    } else if (userType === "student") {
+      localStorage.setItem("userType", "student");
+      setIsAdmin(false);
+      navigate("/selectUserLogin");
+    } else {
+      alert("Invalid user type. Please enter 'admin' or 'student'.");
+    }
   };
 
   return (
@@ -19,7 +31,7 @@ const Header = () => {
           <a href="#about">About Us</a>
           <a href="#classes">Classes</a>
           <a href="#tutors">Tutors</a>
-          <a href="#tutors">Contact Us</a>
+          <a href="#contact">Contact Us</a>
         </nav>
 
         <div>

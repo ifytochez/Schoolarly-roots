@@ -5,7 +5,7 @@ import Landing2 from "../../assets/images/landing2.png";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 
-const LandingPage = ({ setIsLoggedIn }) => {
+const LandingPage = ({ setIsAdmin }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleToggle = (index) => {
@@ -169,7 +169,7 @@ const LandingPage = ({ setIsLoggedIn }) => {
             "linear-gradient(180deg, rgba(198, 176, 247, 0) 8%, rgba(198, 176, 247, 0.5) 50%, rgba(198, 176, 247, 0) 90%)",
         }}
       >
-        <Header setIsLoggedIn={setIsLoggedIn} />
+        <Header setIsAdmin={setIsAdmin} />
         <div className="flex flex-col justify-center items-center mt-20">
           <p className="font-recoleta font-extrabold text-4.5xl text-[#160041]">
             Personalized learnings.

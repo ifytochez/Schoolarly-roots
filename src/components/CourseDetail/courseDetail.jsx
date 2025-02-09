@@ -6,9 +6,12 @@ import Course12 from "../../assets/images/course12.png";
 import Course13 from "../../assets/images/course13.png";
 import Course14 from "../../assets/images/course14.png";
 import User from "../../assets/images/user.png";
+import Book from "../../assets/images/bxs-book.png";
 
 const CourseDetail = ({ onBack }) => {
   const [selectedClass, setSelectedClass] = useState("General");
+  const [paymentProof, setPaymentProof] = useState(false);
+  const paymentProofRef = useRef(null);
   const [selectedPrice, setSelectedPrice] = useState(120);
   const [enroll, setEnroll] = useState(false);
   const enrollRef = useRef(null);
@@ -17,6 +20,12 @@ const CourseDetail = ({ onBack }) => {
     setSelectedClass(classType);
     setSelectedPrice(price);
     setEnroll(true);
+    setPaymentProof(false);
+  };
+
+  const handleConfirm = () => {
+    setEnroll(false);
+    setPaymentProof(true);
   };
 
   return (
@@ -184,13 +193,50 @@ const CourseDetail = ({ onBack }) => {
               >
                 Cancel
               </button>
-              <button className="text-white py-2 px-12 bg-[#3900B4] rounded font-recoleta text-sm">
+              <button
+                className="text-white py-2 px-12 bg-[#3900B4] rounded font-recoleta text-sm"
+                onClick={() => handleConfirm()}
+              >
                 Enroll - ${selectedPrice}
               </button>
             </div>
           </div>
         )}
       </div>
+
+      {paymentProof && (
+        <div className="fixed inset-0 flex justify-center items-center z-100">
+          <div className="fixed inset-0 bg-black opacity-30"></div>
+          <div
+            ref={paymentProofRef}
+            className="createAccount w-[35%] bg-white rounded-2xl p-4 relative z-10000000"
+          >
+            <button className="rounded-full border h-14 w-14 bg-[rgba(228,214,255,1)] flex items-center justify-center">
+              <img src={Book} alt="flag" />
+            </button>
+            <p className="mt-2 font-recoleta text-xl text-[rgba(22, 0, 65, 1)] font-bold">
+              Enroll Student?
+            </p>
+
+            <p className="font-airbnb text-lg mt-8">
+              Before manually enrolling a student, make sure to receive proof of
+              payment.
+            </p>
+
+            <div className="flex mt-16 gap-4">
+              <button
+                className="text-custom-purple py-2 px-8 border border-custom-purple rounded font-recoleta text-sm"
+                onClick={() => setPaymentProof(false)}
+              >
+                No, Go back
+              </button>
+              <button className="text-white py-2 px-12 bg-[#3900B4] rounded font-recoleta text-sm">
+                Yes, Enroll
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

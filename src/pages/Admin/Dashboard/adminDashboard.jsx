@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./adminDashboard.css";
 import Bell from "../../../assets/images/bell 1.png";
 import CreateAccount from "../../../components/CreateAccount/createAccount";
+import AdminDashboardStats from "./adminDashboardChart";
 
 const AdminDashboardPage = () => {
   const [showCreateAccount, setShowCreateAccount] = useState(false);
@@ -28,6 +29,8 @@ const AdminDashboardPage = () => {
       </div>
 
       <hr />
+
+      <AdminDashboardStats/>
 
       <CreateAccount
         showCreateAccount={showCreateAccount}

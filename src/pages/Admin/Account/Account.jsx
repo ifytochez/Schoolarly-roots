@@ -240,6 +240,32 @@ const Account = () => {
         accessor: "createdCourses",
         customClassName: "font-light text-[rgba(89,89,89,1)]",
       },
+
+      {
+        Header: "Action",
+        accessor: "action",
+        Cell: ({ row }) => (
+          <div className="relative">
+            <button
+              className="text-gray-600 hover:text-gray-800"
+              onClick={() => handleDropdownToggle(row.index)}
+            >
+              &#8942;
+            </button>
+            {dropdownOpen === row.index && (
+              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => navigate("/tutor")}
+                >
+                  View Details
+                </button>
+              </div>
+            )}
+          </div>
+        ),
+        customClassName: "font-light text-[rgba(89,89,89,1)]",
+      },
     ],
   };
 

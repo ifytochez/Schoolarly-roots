@@ -27,19 +27,32 @@ import SingleCourse from "./pages/Admin/SingleCourse/singleCourse";
 import Parent from "./pages/Admin/Parent/parent";
 import Student from "./pages/Admin/Student/student";
 import Tutor from "./pages/Admin/Tutor/tutor";
-
+import TutorDashboard from "./pages/Tutor/TutorDashboard/tutorDashboard";
+import TutorClasses from "./pages/Tutor/TutorClasses/tutorClasses";
+import TutorSidebar from "./pages/Tutor/TutorSidebar/tutorSidebar";
+import TutorCourses from "./pages/Tutor/TutorCourses/tutorCourses";
+import TutorHomework from "./pages/Tutor/TutorHomework/tutorHomework";
+import TutorSchedule from "./pages/Tutor/TutorSchedule/tutorSchedule";
+import TutorSetting from "./pages/Tutor/TutorSetting/tutorSetting";
+import TutorReport from "./pages/Tutor/TutorReport/tutorReport";
+import TutorPayout from "./pages/Tutor/TutorPayout/tutorPayout";
 
 const App = () => {
   const storedLoginStatus = localStorage.getItem("isLoggedIn");
   const storedUserType = localStorage.getItem("userType");
   const [isLoggedIn, setIsLoggedIn] = useState(storedLoginStatus === "true");
   const [isAdmin, setIsAdmin] = useState(storedUserType === "admin");
+  const [isStudent, setIsStudent] = useState(storedUserType === "student");
+  const [isTutor, setIsTutor] = useState(storedUserType === "tutor");
 
   useEffect(() => {
     const storedLoginStatus = localStorage.getItem("isLoggedIn") === "true";
-    const storedUserType = localStorage.getItem("userType") === "admin";
+    const storedUserType = localStorage.getItem("userType");
+
     setIsLoggedIn(storedLoginStatus);
-    setIsAdmin(storedUserType);
+    setIsAdmin(storedUserType === "admin");
+    setIsStudent(storedUserType === "student");
+    setIsTutor(storedUserType === "tutor");
   }, []);
 
   return (
@@ -49,12 +62,25 @@ const App = () => {
         setIsLoggedIn={setIsLoggedIn}
         isAdmin={isAdmin}
         setIsAdmin={setIsAdmin}
+        isStudent={isStudent}
+        setIsStudent={setIsStudent}
+        isTutor={isTutor}
+        setIsTutor={setIsTutor}
       />
     </Router>
   );
 };
 
-const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
+const AppContent = ({
+  isLoggedIn,
+  setIsLoggedIn,
+  isAdmin,
+  setIsAdmin,
+  isStudent,
+  setIsStudent,
+  isTutor,
+  setIsTutor
+}) => {
   const location = useLocation();
   const isSidebarVisible =
     isLoggedIn &&
@@ -63,10 +89,17 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
 
   return (
     <div className="flex min-h-screen">
-      {isSidebarVisible && (isAdmin ? <AdminSidebar /> : <Sidebar />)}
+      {isSidebarVisible &&
+        (isAdmin ? (
+          <AdminSidebar />
+        ) : isStudent ? (
+          <Sidebar />
+        ) : isTutor ? (
+          <TutorSidebar /> 
+        ) : null)}
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<LandingPage setIsAdmin={setIsAdmin} />} />
+          <Route path="/" element={<LandingPage setIsAdmin={setIsAdmin} setIsStudent={setIsStudent} setIsTutor={setIsTutor} />} />
           <Route
             path="/selectUserLogin"
             element={<SelectUserLogin setIsLoggedIn={setIsLoggedIn} />}
@@ -88,7 +121,7 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
             </>
           )}
 
-          {isLoggedIn && !isAdmin && (
+          {isLoggedIn && isStudent && (
             <>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/classes" element={<ClassesPage />} />
@@ -97,6 +130,20 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
               <Route path="/reports" element={<ReportsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/courseDetails" element={<CourseDetails />} />
+            </>
+          )}
+
+          {isLoggedIn && isTutor && (
+            <>
+              <Route path="/tutorDashboard" element={<TutorDashboard />} />
+              <Route path="/tutorClasses" element={<TutorClasses />} />
+              <Route path="/tutorCourses" element={<TutorCourses />} />
+              <Route path="/tutorSchedule" element={<TutorSchedule />} />
+              <Route path="/tutorHomework" element={<TutorHomework />} />
+              <Route path="/tutorSetting" element={<TutorSetting />} />
+              <Route path="/tutorReport" element={<TutorReport />} />
+              <Route path="/tutorPayout" element={<TutorPayout />} />
+            
             </>
           )}
         </Routes>

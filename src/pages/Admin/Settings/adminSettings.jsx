@@ -3,7 +3,7 @@ import Bell from "../../../assets/images/bell 1.png";
 import Account from "../../../assets/images/account.png";
 import PasswordInput from "../../../components/PasswordInput/passwordInput";
 import Table from "../../../components/Table/table";
-import { Link } from "react-router-dom";
+
 
 const AdminSettings = () => {
   const fileInputRef = useRef(null);

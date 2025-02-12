@@ -2,24 +2,35 @@ import React from "react";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ setIsAdmin }) => {
+const Header = ({ setIsAdmin, setIsStudent, setIsTutor }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    const userType = prompt("Enter user type (admin/student):").toLowerCase();
+    const userType = prompt("Enter user type (admin/student/tutor):")?.toLowerCase();
 
     if (userType === "admin") {
       localStorage.setItem("userType", "admin");
       setIsAdmin(true);
+      setIsStudent(false);
+      setIsTutor(false);
       navigate("/adminDashboard");
     } else if (userType === "student") {
       localStorage.setItem("userType", "student");
       setIsAdmin(false);
-      navigate("/selectUserLogin");
+      setIsStudent(true);
+      setIsTutor(false);
+      navigate("/dashboard"); 
+    } else if (userType === "tutor") {
+      localStorage.setItem("userType", "tutor");
+      setIsAdmin(false);
+      setIsStudent(false);
+      setIsTutor(true);
+      navigate("/tutorDashboard");
     } else {
-      alert("Invalid user type. Please enter 'admin' or 'student'.");
+      alert("Invalid user type. Please enter 'admin', 'student', or 'tutor'.");
     }
   };
+  
 
   return (
     <header>
